@@ -7,6 +7,7 @@
     <title>Farewell Nostalgia</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="header.footer.js"></script>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="header.footer.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -26,39 +27,35 @@
 
 
         <header>
-            <div class="logo">
-                <img src="Company Logo\PicHubStudios-Circle.png" alt="Logo">
-                <span>Farewell Nostalgia</span>
-            </div>
-            <nav>
-                <ul>
-                    <li><a class="active" href="index.html">Home</a></li>
-                    <li><a href="Gallery/gallery.html">Gallery</a></li>
-                    <li><a href="About-US/About US.html">About Us</a></li>
-                    <li><a href="upload.html">Upload</a></li>
-                </ul>
-            </nav>
-            <div class="menu-icon" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
-            </div>
-        </header>
+    <div class="logo">
+        <img src="Company Logo\PicHubStudios-Circle.png" alt="Logo">
+        <span>Farewell Nostalgia</span>
+    </div>
+    <nav>
+        <ul>
+            <li><a class="active" href="index.html">Home</a></li>
+            <li><a href="Gallery/gallery.html">Gallery</a></li>
+            <li><a href="About-US/About US.html">About Us</a></li>
+            <li><a href="upload.html">Upload</a></li>
+        </ul>
+    </nav>
+    <div class="menu-icon" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+</header>
+
 
         <div id="sidebar-menu">
-            <ul>
-              <li><a class="active" href="">Home</a></li>
-              <li><a href="Gallery/gallery.html">Gallery</a></li>
-              <li><a href="About-US/About US.html">About Us</a></li>
-              <li><a href="upload.html">Upload</a></li>
-            </ul>
-        </div>
-        <div id="overlay" onclick="toggleMenu()"></div> 
-
-
-        
-
+    <ul>
+      <li><a class="active" href="">Home</a></li>
+      <li><a href="Gallery/gallery.html">Gallery</a></li>
+      <li><a href="About-US/About US.html">About Us</a></li>
+      <li><a href="upload.html">Upload</a></li>
+    </ul>
+</div>
+<div id="overlay" onclick="toggleMenu()"></div> 
 
 <div class="intro">
-    
     <div class="text-container">
         <h1>Farewell Nostalgia</h1>
     </div>
@@ -100,11 +97,51 @@
 </div>
   
 
+
+  <footer>
+        <div class="footer-wrapper">
+          <div class="footer-section">
+            <div class="footer-subscribe">
+              <h2>
+                Send us more photos to showcase your farewell memories!
+              </h2>
+              <a href="upload.html" class="upload">Upload Photos!!</a>
+                <div id="message"></div>
+              </div>
+           
+            <nav class="footer-nav">
+              <div>
+                <h2>Credits</h2>
+                <ul>
+                <li>Website Owned and Managed by <a href="https://www.instagram.com/aayush_rajgupta">Aayush Raj Gupta</a><br></li>
+                <li>Resources by <a href="https://www.instagram.com/762_sagar"> Sagar Bhakt Sinha</a><br></li>
+                <li>Ideas by <a href="https://www.instagram.com/sahilsingh.fr"> Sahil Singh</a><br></li>
+              </ul>
+              </div>
+              <div>
+                <h2>Connect To Us</h2>
+                <ul>
+                  <li><a href="mailto:nostalgiafarewell@gmail.com">Email</a></li>
+                  <li><a href="https://www.instagram.com/pichub__official/">Instgram</a></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+    
+          <div class="footer-copyright">
+            <p>©2025 Farewell Nostalgia, Inc. All rights reserved.</p>
+            <p>Privacy Policy.</p>
+            <p>Terms of Use.<strong> Powred By <a href="https://www.pichub.co.uk">PicHub.co.uk</a></strong></p>
+          </div>
+        </div>
+      </footer>
+  
+
 <script>
     let currentPage = 1;
 
 const folderPaths = {
-    'folder1': 'https://www.pichub.co.uk/Photos-Webpage/Vintage/photos/'};
+    'folder1': 'Photos-Webpage/Vintage/photos/'};
 
 const imagesPerFolder = {
     'folder1': 100, 
@@ -136,16 +173,16 @@ const totalImages = {
 
 // Custom download page links for each folder
 const downloadLinks = {
-    'folder1': 'Photos-Webpage/Vintage/vintage-downloader', 
-    'folder2': 'Photos-Webpage/Digital Painting/digital-downloader', 
-    'folder3': 'Photos-Webpage/Anime/ai-art_anime-downloader', 
-    'folder4': 'Photos-Webpage/Anime/DBS_anime-downloader', 
-    'folder5': 'Photos-Webpage/Anime/demon-slayer_anime-downloader', 
-    'folder6': 'Photos-Webpage/Anime/jujutsu-kaisen_anime-downloader', 
-    'folder7': 'Photos-Webpage/Anime/naruto_anime-downloader', 
-    'folder8': 'Photos-Webpage/Anime/solo-leveling_anime-downloader', 
-    'folder9': 'Photos-Webpage/Anime/tokyo-ghoul_anime-downloader', 
-    'folder10': 'Photos-Webpage/Anime/tokyo-revengers_anime-downloader'
+    'folder1': 'https://www.pichub.co.uk/Photos-Webpage/Vintage/vintage-downloader', 
+    'folder2': 'https://www.pichub.co.uk/Photos-Webpage/Digital Painting/digital-downloader', 
+    'folder3': 'https://www.pichub.co.uk/Photos-Webpage/Anime/ai-art_anime-downloader', 
+    'folder4': 'https://www.pichub.co.uk/Photos-Webpage/Anime/DBS_anime-downloader', 
+    'folder5': 'https://www.pichub.co.uk/Photos-Webpage/Anime/demon-slayer_anime-downloader', 
+    'folder6': 'https://www.pichub.co.uk/Photos-Webpage/Anime/jujutsu-kaisen_anime-downloader', 
+    'folder7': 'https://www.pichub.co.uk/Photos-Webpage/Anime/naruto_anime-downloader', 
+    'folder8': 'https://www.pichub.co.uk/Photos-Webpage/Anime/solo-leveling_anime-downloader', 
+    'folder9': 'https://www.pichub.co.uk/Photos-Webpage/Anime/tokyo-ghoul_anime-downloader', 
+    'folder10': 'https://www.pichub.co.uk/Photos-Webpage/Anime/tokyo-revengers_anime-downloader'
 };
 
 // Open modal and display the image with download link
@@ -377,44 +414,6 @@ document.addEventListener('DOMContentLoaded', () => {
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<footer>
-    <div class="footer-wrapper">
-      <div class="footer-section">
-        <div class="footer-subscribe">
-          <h2>
-            Send us more photos to showcase your farewell memories!
-          </h2>
-          <a href="upload.html" class="upload">Upload Photos!!</a>
-            <div id="message"></div>
-          </div>
-       
-        <nav class="footer-nav">
-          <div>
-            <h2>Credits</h2>
-            <ul>
-            <li>Website Owned and Managed by <a href="https://www.instagram.com/aayush_rajgupta">Aayush Raj Gupta</a><br></li>
-            <li>Resources by <a href="https://www.instagram.com/762_sagar"> Sagar Bhakt Sinha</a><br></li>
-            <li>Ideas by <a href="https://www.instagram.com/sahilsingh.fr"> Sahil Singh</a><br></li>
-          </ul>
-          </div>
-          <div>
-            <h2>Connect To Us</h2>
-            <ul>
-              <li><a href="mailto:nostalgiafarewell@gmail.com">Email</a></li>
-              <li><a href="https://www.instagram.com/pichub__official/">Instgram</a></li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-
-      <div class="footer-copyright">
-        <p>©2025 Farewell Nostalgia, Inc. All rights reserved.</p>
-        <p>Privacy Policy.</p>
-        <p>Terms of Use.<strong> Powred By <a href="https://www.pichub.co.uk">PicHub.co.uk</a></strong></p>
-      </div>
-    </div>
-  </footer>
 
 
     
