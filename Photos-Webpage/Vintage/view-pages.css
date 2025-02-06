@@ -1,0 +1,270 @@
+body{
+    background: #fff;
+    margin-top: 15vh;
+   } 
+   
+    
+    @media (max-width: 1200px) { #body { margin-top: 12vh; } }
+    @media (max-width: 992px) { #body { margin-top: 12vh; } }
+    @media (max-width: 768px) { #body { margin-top: 20vh;} }
+    @media (max-width: 576px) { #body { margin-top: 20vh;} }
+
+    .w3-content {
+        margin: 0 auto;
+        padding: 0 20px;
+        max-width: 2000px;
+    }
+
+    .w3-row-padding {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .w3-row-padding.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .w3-column {
+        flex-basis: 25%;
+        padding: 8px;
+    }
+
+    .w3-column img {
+        width: 100%;
+        height: auto;
+        padding: 8px;
+        display: block;
+        object-fit: cover;
+        transition: filter 0.3s ease;
+        cursor: pointer;
+        border: #000 solid;
+    }
+
+    .w3-column img:hover {
+        filter: brightness(40%) saturate(120%);
+    }
+
+    .img-container {
+        position: relative;
+        overflow: hidden;
+       
+    }
+
+    .preview-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-size: 2em;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 1;
+        white-space: nowrap;
+        pointer-events: none;
+        color: white;
+    }
+
+    .img-container:hover .preview-text {
+        opacity: 1;
+    }
+
+    @media (max-width: 1600px) { .w3-column { flex-basis: 31.33%; } }
+    @media (max-width: 1200px) { .w3-column { flex-basis: 48%; } }
+    @media (max-width: 768px) { .w3-column { flex-basis: 100%; } }
+
+    #imageModal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: #00000080;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img-container {
+        position: relative;
+        max-width: 90%;
+        max-height: 90%;
+        margin: auto;
+        text-align: center;
+    }
+
+    #imageModal img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        justify-content: center;
+    }
+
+    #imageModal .download-btn {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 8px 12px;
+        border: 2px solid #fffdfd;
+        border-radius: 10px;
+        cursor: pointer;
+        color: #000;
+        font-size: 1em;
+        font-weight: bold;
+        font-family: system-ui;
+        text-decoration: none;
+        transition: background-color 0.3s, color 0.3s;
+        opacity: 1;
+    }
+
+    #imageModal .download-btn:hover {
+        background-color: black;
+        color: #e0e0e0;
+        border-color: #fff;
+    }
+
+    #imageModal .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.8);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: #fff;
+        transition: background-color 0.3s;
+    }
+
+    #imageModal .close-btn:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+        color: black;
+    }
+
+    @media (max-width: 1600px) { #imageModal .download-btn { padding: 7px 11px; } }
+    @media (max-width: 1200px) { #imageModal .download-btn { padding: 6px 10px; } }
+    @media (max-width: 992px) { #imageModal .download-btn { padding: 5px 9px; } }
+    @media (max-width: 768px) { #imageModal .download-btn { padding: 4px 8px; font-size: 0.9em; } }
+    @media (max-width: 576px) { #imageModal .download-btn { padding: 3px 7px; font-size: 0.8em; } }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+    }
+
+    .pagination button {
+        background-color: #ffe0bdfa;
+        color: rgb(0, 0, 0);
+        border: none;
+        padding: 10px 20px;
+        margin: 0 5px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .pagination button:hover {
+        background-color: #000000;
+        transform: scale(1.1);
+        color: #fff;
+    }
+
+    .pagination button[disabled] {
+        background-color: #ffffff;
+    }
+
+    .pagination .arrow {
+        font-size: 1.5em;
+    }
+
+
+    /* Cookies Consent CSS */
+#cookieConsent {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out;
+}
+
+#cookieConsentPopup {
+    background-color: #222;
+    color: #eee;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    opacity: 0;
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+#cookieConsentPopup p {
+    margin: 0 0 15px 0;
+    font-size: 14px;
+}
+
+#cookieConsentPopup button {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+#cookieConsentPopup button:hover {
+    background-color: #555;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translate(-50%, -60%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
