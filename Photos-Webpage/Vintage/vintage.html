@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,130 +10,373 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="view-pages.css">
     <link rel="stylesheet" href="header.footer.css">
+    <script src="header.footer.js"></script>
     <link rel="icon" type="image/x-icon" href="web-page-photos/PicHubStudios-Circle.png">
+    
+    
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <img src="web-page-photos/PicHubStudios-Circle.png" alt="Logo">
-            <span>Farewell Nostalgia</span>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="../../index.html">Home</a></li>
-                <li><a href="../../Gallery/gallery.html">Gallery</a></li>
-                <li><a href="../../About-US/About US.html">About Us</a></li>
-                <li><a href="../../Upload.html">Upload</a></li>
-            </ul>
-        </nav>
-        <div class="menu-icon" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-        </div>
-    </header>
-    <div id="sidebar-menu">
+
+
+    <!-- HTML -->
+<div id="cookieConsent" style="display: none;">
+    <div id="cookieConsentPopup">
+        <p>This website doesn’t store any cookies or data on your device.</p>
+        <button id="cookieConsentButton">Got it!</button>
+    </div>
+</div>
+
+
+<!-- JavaScript -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var consent = document.getElementById("cookieConsent");
+        var consentButton = document.getElementById("cookieConsentButton");
+
+        // Check if the user has already seen the consent popup
+        if (!sessionStorage.getItem("cookieConsentSeen")) {
+            // Show the consent popup
+            consent.style.display = "block";
+        }
+
+        // Hide the popup and set session storage item when the button is clicked
+        consentButton.onclick = function () {
+            consent.style.display = "none";
+            sessionStorage.setItem("cookieConsentSeen", "true");
+        };
+    });
+</script>
+
+
+<header>
+    <div class="logo">
+        <img src="web-page-photos/PicHubStudios-Circle.png" alt="Logo">
+        <span>Farewell Nostalgia</span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../Gallery/gallery.html">Gallery</a></li>
+            <li><a href="../../About-US/About US.html">About Us</a></li>
+            <li><a href="../../Upload.html">Upload</a></li>
+        </ul>
+    </nav>
+    <div class="menu-icon" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+</header>
+
+
+<div id="sidebar-menu">
     <ul>
-      <li><a class="active" href="">Home</a></li>
-      <li><a href="Gallery/gallery.html">Gallery</a></li>
-      <li><a href="About-US/About US.html">About Us</a></li>
-      <li><a href="upload.html">Upload</a></li>
+        <li><a href="../../index.html">Home</a></li>
+        <li><a href="../../Gallery/gallery.html">Gallery</a></li>
+        <li><a href="../../About-US/About US.html">About Us</a></li>
+        <li><a href="../../Upload.html">Upload</a></li>
     </ul>
 </div>
-<div id="overlay" onclick="toggleMenu()"></div> 
- 
+<div id="overlay" onclick="toggleMenu()"></div>  
 
 
-    <!-- Photo Grid -->
     <div class="w3-content">
-        <div class="w3-row-padding" id="photoGrid">
-            <!-- Add images manually -->
-            <div class="w3-quarter">
-                <img src="photos/1.jpg" alt="Image 1" style="width:100%" onclick="openModal(this.src)">
-                <img src="photos/2.jpg" alt="Image 2" style="width:100%" onclick="openModal(this.src)">
-                <img src="photos/3.jpg" alt="Image 3" style="width:100%" onclick="openModal(this.src)">
-                <!-- Add more images here -->
+        <!-- Pagination and Download Multiple button container -->
+        <div class="pagination-container">
+            <div class="pagination" id="paginationTop">
+                <!-- Pagination buttons will be added here dynamically -->
             </div>
-            <div class="w3-quarter">
-                <img src="photos/4.jpg" alt="Image 4" style="width:100%" onclick="openModal(this.src)">
-                <img src="photos/5.jpg" alt="Image 5" style="width:100%" onclick="openModal(this.src)">
-                <img src="photos/6.jpg" alt="Image 6" style="width:100%" onclick="openModal(this.src)">
-                <!-- Add more images here -->
-            </div>
-            <div class="w3-quarter">
-                <img src="photos/7.jpg" alt="Image 7" style="width:100%" onclick="openModal(this.src)">
-                <img src="photos/8.jpg" alt="Image 8" style="width:100%" onclick="openModal(this.src)">
-                <img src="photos/9.jpg" alt="Image 9" style="width:100%" onclick="openModal(this.src)">
-                <!-- Add more images here -->
-            </div>
-            <div class="w3-quarter">
-                <img src="photos/10.jpg" alt="Image 10" style="width:100%" onclick="openModal(this.src)">
-                <img src="photos/11.jpg" alt="Image 11" style="width:100%" onclick="openModal(this.src)">
-                <img src="photos/12.jpg" alt="Image 12" style="width:100%" onclick="openModal(this.src)">
-                <!-- Add more images here -->
-            </div>
-            <!-- Repeat the above structure for all 100 images -->
+            
         </div>
+    
+        <!-- Photo Grid -->
+        <div class="w3-row-padding" id="photoGrid"></div>
+    
+        <!-- Pagination and Download Multiple button container -->
+        <div class="pagination-container">
+            <div class="pagination" id="paginationBottom">
+                <!-- Pagination buttons will be added here dynamically -->
+            </div>
+        </div>
+    
+        <!-- Modal for Image Preview -->
+        <div id="imageModal" class="w3-modal" onclick="closeModal()">
+            <div class="img-container" onclick="event.stopPropagation()">
+                <img id="modalImage">
+                <a id="modalDownloadBtn" class="download-btn" download>Download</a>
+                <button class="close-btn" onclick="closeModal()">×</button>
+            </div>
+        </div>
+        
     </div>
 
-    <!-- Modal for Image Preview -->
-    <div id="imageModal" class="w3-modal" onclick="closeModal()">
-        <div class="img-container" onclick="event.stopPropagation()">
-            <img id="modalImage">
-            <a id="modalDownloadBtn" class="download-btn" download>Download</a>
-            <button class="close-btn" onclick="closeModal()">×</button>
-        </div>
-    </div>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-wrapper">
-            <div class="footer-section">
-                <div class="footer-subscribe">
-                    <h2>Send us more photos to showcase your farewell memories!</h2>
-                    <a href="upload.html" class="upload">Upload Photos!!</a>
-                    <div id="message"></div>
-                </div>
-                <nav class="footer-nav">
-                    <div>
-                        <h2>Credits</h2>
-                        <ul>
-                            <li>Website Owned and Managed by <a href="https://www.instagram.com/aayush_rajgupta">Aayush Raj Gupta</a><br></li>
-                            <li>Resources by <a href="https://www.instagram.com/762_sagar"> Sagar Bhakt Sinha</a><br></li>
-                            <li>Ideas by <a href="https://www.instagram.com/sahilsingh.fr"> Sahil Singh</a><br></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2>Connect To Us</h2>
-                        <ul>
-                            <li><a href="mailto:nostalgiafarewell@gmail.com">Email</a></li>
-                            <li><a href="https://www.instagram.com/pichub__official/">Instagram</a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-            <div class="footer-copyright">
-                <p>©2025 Farewell Nostalgia, Inc. All rights reserved.</p>
-                <p>Privacy Policy.</p>
-                <p>Terms of Use.<strong> Powered By <a href="https://www.pichub.co.uk">PicHub.co.uk</a></strong></p>
-            </div>
+          <div class="footer-section">
+            <div class="footer-subscribe">
+              <h2>
+                Send us more photos to showcase your farewell memories!
+              </h2>
+              <a href="upload.html" class="upload">Upload Photos!!</a>
+                <div id="message"></div>
+              </div>
+           
+            <nav class="footer-nav">
+              <div>
+                <h2>Credits</h2>
+                <ul>
+                <li>Website Owned and Managed by <a href="https://www.instagram.com/aayush_rajgupta">Aayush Raj Gupta</a><br></li>
+                <li>Resources by <a href="https://www.instagram.com/762_sagar"> Sagar Bhakt Sinha</a><br></li>
+                <li>Ideas by <a href="https://www.instagram.com/sahilsingh.fr"> Sahil Singh</a><br></li>
+              </ul>
+              </div>
+              <div>
+                <h2>Connect To Us</h2>
+                <ul>
+                  <li><a href="mailto:nostalgiafarewell@gmail.com">Email</a></li>
+                  <li><a href="https://www.instagram.com/pichub__official/">Instgram</a></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+    
+          <div class="footer-copyright">
+            <p>©2025 Farewell Nostalgia, Inc. All rights reserved.</p>
+            <p>Privacy Policy.</p>
+            <p>Terms of Use.<strong> Powered By <a href="https://www.pichub.co.uk">PicHub.co.uk</a></strong></p>
+          </div>
         </div>
-    </footer>
+      </footer>      
+        <script>document.getElementById('subscriptionForm').addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevent the default form submission
+      
+          const email = document.getElementById('email').value;
+      
+          // Prepare data to send
+          const formData = {
+              email: email
+          };
+      
+          // Send data to the backend
+          fetch('https://tick-full-lobster.ngrok-free.app/', {  // Replace with your actual URL
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(formData)
+          }).then(response => response.text())
+            .then(result => {
+                document.getElementById('message').textContent = result;
+            }).catch(error => {
+                console.error('Error:', error);
+                document.getElementById('message').textContent = 'An error occurred.';
+            });
+      });
+      </script>
+    
 
-    <!-- Minimal JavaScript for Modal (Optional) -->
     <script>
+        let currentPage = 1;
+        const imagesPerPage = 20;
+        const totalImages = 100; // Total number of images (adjust as needed)
+        const folderPath = 'photos/'; // Folder path where images are stored
+        
+        // Open the modal with the full image and set up the download link
         function openModal(src) {
             const modalImage = document.getElementById('modalImage');
             const imageModal = document.getElementById('imageModal');
+            const imgContainer = document.querySelector('#imageModal .img-container');
             const modalDownloadBtn = document.getElementById('modalDownloadBtn');
-
+        
             modalImage.src = src;
-            modalDownloadBtn.href = src;
+            
+            // Change the download link to open the download page in a new tab
+            modalDownloadBtn.onclick = function() {
+                // Open the downloader page with the image name as a query parameter
+                window.open(`vintage-downloader.html?photo=${src.split('/').pop()}`, '_blank');
+            };
+        
+            imgContainer.style.width = 'auto';
+            imgContainer.style.height = 'auto';
+        
             imageModal.style.display = 'flex';
+        
+            if (modalImage.complete) {
+                adjustModal();
+            } else {
+                modalImage.onload = adjustModal;
+            }
+        
+            modalImage.onerror = function() {
+                console.error('Image failed to load.');
+                imageModal.style.display = 'none';
+            };
+        
+            function adjustModal() {
+                const imgAspectRatio = modalImage.naturalWidth / modalImage.naturalHeight;
+                const containerAspectRatio = imgContainer.clientWidth / imgContainer.clientHeight;
+        
+                if (imgAspectRatio > containerAspectRatio) {
+                    imgContainer.style.width = '90%';
+                    imgContainer.style.height = 'auto';
+                } else {
+                    imgContainer.style.width = 'auto';
+                    imgContainer.style.height = '90%';
+                }
+            }
         }
-
+        
         function closeModal() {
             document.getElementById('imageModal').style.display = 'none';
         }
+        
+        // Load images for the gallery
+        function loadImages(page = 1) {
+            const w3RowPadding = document.getElementById('photoGrid');
+            const screenWidth = window.innerWidth;
+            let columnCount = 4;
+        
+            if (screenWidth <= 1600) columnCount = (screenWidth > 1200) ? 3 : (screenWidth > 768) ? 2 : 1;
+        
+            const startImage = totalImages - (page - 1) * imagesPerPage;
+            const endImage = Math.max(totalImages - page * imagesPerPage + 1, 1);
+        
+            const totalPages = Math.ceil(totalImages / imagesPerPage);
+        
+            w3RowPadding.innerHTML = '';
+            for (let i = 0; i < columnCount; i++) {
+                const column = document.createElement('div');
+                column.classList.add('w3-column');
+                w3RowPadding.appendChild(column);
+            }
+        
+            let loadedImages = 0;
+            const totalToLoad = startImage - endImage + 1;
+            const loadComplete = () => {
+                loadedImages++;
+                if (loadedImages === totalToLoad) {
+                    w3RowPadding.classList.add('show');
+                }
+            };
+        
+            for (let i = startImage; i >= endImage; i--) {
+                const imgContainer = document.createElement('div');
+                imgContainer.classList.add('img-container');
+        
+                const img = document.createElement('img');
+                const lowResPath = `${folderPath}${i}.jpg?res=low`; // Request for lower resolution image
+                img.src = lowResPath; // Low resolution for gallery view
+                img.alt = `Image ${i}`;
+        
+                // Check if the image exists before adding it to the gallery
+                img.onload = loadComplete;
+                img.onerror = function() {
+                    console.error(`Failed to load image: ${lowResPath}`);
+                    loadComplete();
+                };
+        
+                img.addEventListener('click', () => openModal(`${folderPath}${i}.jpg`));  // Full image for modal view
+        
+                imgContainer.appendChild(img);
+        
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.className = 'image-checkbox';
+                imgContainer.appendChild(checkbox);
+        
+                const previewText = document.createElement('div');
+                previewText.classList.add('preview-text');
+                previewText.textContent = 'Preview';
+                imgContainer.appendChild(previewText);
+        
+                w3RowPadding.children[(startImage - i) % columnCount].appendChild(imgContainer);
+            }
+        
+            createPagination(totalPages, page);
+        }
+        
+        // Create pagination buttons for gallery navigation
+        function createPagination(totalPages, page) {
+            const paginationTop = document.getElementById('paginationTop');
+            const paginationBottom = document.getElementById('paginationBottom');
+            paginationTop.innerHTML = '';
+            paginationBottom.innerHTML = '';
+        
+            if (page > 1) {
+                const prevButtonTop = document.createElement('button');
+                const prevButtonBottom = document.createElement('button');
+                prevButtonTop.innerHTML = '&laquo;';
+                prevButtonBottom.innerHTML = '&laquo;';
+                prevButtonTop.classList.add('arrow');
+                prevButtonBottom.classList.add('arrow');
+                prevButtonTop.addEventListener('click', () => loadImages(page - 1));
+                prevButtonBottom.addEventListener('click', () => loadImages(page - 1));
+                paginationTop.appendChild(prevButtonTop);
+                paginationBottom.appendChild(prevButtonBottom);
+            }
+        
+            const visiblePages = 5;
+            const startPage = Math.max(1, page - Math.floor(visiblePages / 2));
+            const endPage = Math.min(totalPages, startPage + visiblePages - 1);
+        
+            for (let i = startPage; i <= endPage; i++) {
+                const buttonTop = document.createElement('button');
+                const buttonBottom = document.createElement('button');
+        
+                buttonTop.textContent = buttonBottom.textContent = i;
+        
+                if (i === page) {
+                    buttonTop.disabled = buttonBottom.disabled = true;
+                    buttonTop.style.backgroundColor = '#000';
+                    buttonBottom.style.backgroundColor = '#000';
+                    buttonTop.style.color = '#fff';
+                    buttonBottom.style.color = '#fff';
+                    buttonTop.style.fontSize = '1.5em';
+                    buttonBottom.style.fontSize = '1.5em';
+                }
+        
+                buttonTop.addEventListener('click', () => loadImages(i));
+                buttonBottom.addEventListener('click', () => loadImages(i));
+        
+                paginationTop.appendChild(buttonTop);
+                paginationBottom.appendChild(buttonBottom);
+            }
+        
+            if (page < totalPages) {
+                const nextButtonTop = document.createElement('button');
+                const nextButtonBottom = document.createElement('button');
+                nextButtonTop.innerHTML = '&raquo;';
+                nextButtonBottom.innerHTML = '&raquo;';
+                nextButtonTop.classList.add('arrow');
+                nextButtonBottom.classList.add('arrow');
+                nextButtonTop.addEventListener('click', () => loadImages(page + 1));
+                nextButtonBottom.addEventListener('click', () => loadImages(page + 1));
+                paginationTop.appendChild(nextButtonTop);
+                paginationBottom.appendChild(nextButtonBottom);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            loadImages(currentPage);
+        });
+        </script>
+
+    <script>
+        // JavaScript to handle the header fade in and out on scroll
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+    
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                // Downscroll
+                header.classList.add('hidden');
+            } else {
+                // Upscroll
+                header.classList.remove('hidden');
+            }
+            lastScrollTop = scrollTop;
+        });
     </script>
+    
 </body>
 </html>
