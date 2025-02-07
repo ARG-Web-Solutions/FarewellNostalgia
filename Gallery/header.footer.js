@@ -1,22 +1,26 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const menuIcon = document.querySelector(".menu-icon");
+function toggleMenu() {
     const sidebarMenu = document.getElementById("sidebar-menu");
     const overlay = document.getElementById("overlay");
 
-    if (!menuIcon || !sidebarMenu || !overlay) {
-        console.error("Menu icon, sidebar menu, or overlay not found!");
+    if (!sidebarMenu || !overlay) {
+        console.error("Sidebar menu or overlay not found.");
         return;
     }
 
-    function toggleMenu() {
-        const isActive = sidebarMenu.classList.toggle("active");
-        overlay.style.display = isActive ? "block" : "none";
+    const isActive = sidebarMenu.classList.toggle("active");
+    overlay.style.display = isActive ? "block" : "none";
+}
+
+// Ensure event listeners are properly attached
+document.addEventListener("DOMContentLoaded", function () {
+    const menuIcon = document.querySelector(".menu-icon");
+    const overlay = document.getElementById("overlay");
+
+    if (menuIcon) {
+        menuIcon.addEventListener("click", toggleMenu);
     }
 
-    menuIcon.addEventListener("click", toggleMenu);
-    
-    overlay.addEventListener("click", function () {
-        sidebarMenu.classList.remove("active");
-        overlay.style.display = "none";
-    });
+    if (overlay) {
+        overlay.addEventListener("click", toggleMenu);
+    }
 });
