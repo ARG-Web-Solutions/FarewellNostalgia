@@ -17,5 +17,13 @@
                  });
              });
 
+document.addEventListener("DOMContentLoaded", function () {
+    let sidebarButton = document.querySelector(".menu-icon");
+    if (sidebarButton) {
+        sidebarButton.addEventListener("click", toggleMenu);
+    } else {
+        console.error("Sidebar button not found!");
+    }
+});
 
              
