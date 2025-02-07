@@ -434,64 +434,78 @@
     </div>
   </footer>
 
-  <script>document.getElementById('subscriptionForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
-
-    const email = document.getElementById('email').value;
-
-    // Prepare data to send
-    const formData = {
-        email: email
-    };
-
-    // Send data to the backend
-    fetch('https://tick-full-lobster.ngrok-free.app/', {  // Replace with your actual URL
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-    }).then(response => response.text())
-      .then(result => {
-          document.getElementById('message').textContent = result;
-      }).catch(error => {
-          console.error('Error:', error);
-          document.getElementById('message').textContent = 'An error occurred.';
-      });
-});
-</script>
+  <script>
+        
+    document.getElementById('subscriptionForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the default form submission
   
+      const email = document.getElementById('email').value;
+  
+      // Prepare data to send
+      const formData = {
+          email: email
+      };
+  
+      // Send data to the backend
+      fetch('https://tick-full-lobster.ngrok-free.app/', {  // Replace with your actual URL
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+      }).then(response => response.text())
+        .then(result => {
+            document.getElementById('message').textContent = result;
+        }).catch(error => {
+            console.error('Error:', error);
+            document.getElementById('message').textContent = 'An error occurred.';
+        });
+  });
 
-<script>
-    // JavaScript to handle the header fade in and out on scroll
-    let lastScrollTop = 0;
-    const header = document.querySelector('header');
 
-    window.addEventListener('scroll', function() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        if (scrollTop > lastScrollTop) {
-            // Downscroll
-            header.classList.add('hidden');
-        } else {
-            // Upscroll
-            header.classList.remove('hidden');
-        }
-        lastScrollTop = scrollTop;
-    });
-</script>
-<script>
-    function toggleMenu() {
-        var sidebar = document.getElementById("sidebar-menu");
-        var overlay = document.getElementById("overlay");
+      // JavaScript to handle the header fade in and out on scroll
+let lastScrollTop = 0;
+const header = document.querySelector('header');
 
-        if (sidebar.style.display === "block") {
-            sidebar.style.display = "none";
-            overlay.style.display = "none";
-        } else {
-            sidebar.style.display = "block";
-            overlay.style.display = "block";
-        }
+window.addEventListener('scroll', function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop) {
+        // Downscroll
+        header.classList.add('hidden');
+    } else {
+        // Upscroll
+        header.classList.remove('hidden');
     }
+    lastScrollTop = scrollTop;
+});
+  </script>
+
+
+
+
+
+
+
+<!-- JavaScript -->
+<script>
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    var consent = document.getElementById("cookieConsent");
+    var consentButton = document.getElementById("cookieConsentButton");
+    
+    // Check if the user has already seen the consent popup
+    if (!sessionStorage.getItem("cookieConsentSeen")) {
+        // Show the consent popup
+        consent.style.display = "block";
+    }
+
+    // Hide the popup and set session storage item when the button is clicked
+    consentButton.onclick = function () {
+        consent.style.display = "none";
+        sessionStorage.setItem("cookieConsentSeen", "true");
+    };
+});
 </script>
 
 
@@ -499,5 +513,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+
 </body>
-    </html>
+</html>
